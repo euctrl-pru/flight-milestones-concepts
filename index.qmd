@@ -118,7 +118,7 @@ we can calculate RWY utilization at each airport or inter-arrival times, etc.
 
 # Milestones Definition
 
-DEFINE ER diagram: 
+![Entity-Relationship diagram for Milestones and relevant concepts.](media/er-diagram.jpeg)
 
 * flight table --> at a min flight ID, ADEP, ADES, take-off, touch-down (optionally or in a
   separate table aircraft info, airline info) 
