@@ -129,6 +129,32 @@ The tricky thing is obviously having a non-overlapping airspaces (of the same ty
 
 The milestone concept can be modeled in entity-relationship fashion as in @fig-er-milestones.
 
+```{mermaid}
+%%| label: fig-er-diagram
+%%| fig-cap: "Entity-Relationship diagram for Milestone and relevant concepts."
+
+erDiagram
+    MILESTONE {
+        string id
+    }
+    FLIGHT {
+        string id
+    }
+    AIRPORT {
+        string id
+    }
+    AIRCRAFT {
+        string id
+    }
+    PROFILE {
+        string id
+    }
+    
+    MILESTONE ||--|{ FLIGHT : id
+
+```
+
+
 ![Entity-Relationship diagram for Milestone and relevant concepts.](media/er-diagram.jpeg){#fig-er-milestones}
 
 In words, a milestone refers to a flight (via the foreign key `flight_id`) and

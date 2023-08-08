@@ -80,6 +80,9 @@ div.csl-indent {
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 </head>
@@ -271,11 +274,45 @@ div.csl-indent {
 </section>
 <section id="milestones-definition" class="level1" data-number="5">
 <h1 data-number="5"><span class="header-section-number">5</span> Milestones Definition</h1>
-<p>The milestone concept can be modeled in entity-relationship fashion as in <a href="#fig-er-milestones">Figure&nbsp;<span>5.1</span></a>.</p>
+<p>The milestone concept can be modeled in entity-relationship fashion as in <a href="#fig-er-milestones">Figure&nbsp;<span>5.2</span></a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-er-diagram" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-1">erDiagram
+    MILESTONE {
+        string id
+    }
+    FLIGHT {
+        string id
+    }
+    AIRPORT {
+        string id
+    }
+    AIRCRAFT {
+        string id
+    }
+    PROFILE {
+        string id
+    }
+    
+    MILESTONE ||--|{ FLIGHT : id
+
+</pre>
+<div id="mermaid-tooltip-1" class="mermaidTooltip">
+
+</div>
+<p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;5.1: Entity-Relationship diagram for Milestone and relevant concepts.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
 <div id="fig-er-milestones" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="media/er-diagram.jpeg" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;5.1: Entity-Relationship diagram for Milestone and relevant concepts.</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;5.2: Entity-Relationship diagram for Milestone and relevant concepts.</figcaption><p></p>
 </figure>
 </div>
 <p>In words, a milestone refers to a flight (via the foreign key <code>flight_id</code>) and has few attributes as described in <a href="#sec-milestones"><span>Chapter&nbsp;3</span></a> (namely, <code>type</code>, <code>timestamp</code>, <code>lon</code>, <code>lat</code>, <code>alt</code>, <code>src</code>, <code>info</code>.)</p>
