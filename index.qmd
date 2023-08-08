@@ -108,6 +108,8 @@ is operated between those milestones will produce results with different levels 
 [accuracy and precision](https://en.wikipedia.org/wiki/Accuracy_and_precision).
 
 
+**NOTE**: add ER diagram for use case
+
 ## Operational performance
 
 
@@ -135,22 +137,47 @@ The milestone concept can be modeled in entity-relationship fashion as in @fig-e
 
 erDiagram
     MILESTONE {
-        string id
+        int id PK
+        int flight_id FK
+        string type
+        datetime timestamp
+        float longitude
+        float latitude
+        float altitude
+        string source
+        string info
     }
     FLIGHT {
-        string id
+        int id PK
+        int ADEP FK
+        int ADES FK
+        int aircraft FK
+        string FLT_ID
     }
     AIRPORT {
-        string id
+        int id PK
+        string ICAO
+        string IATA
+        float longitude
+        float latitude
+        float elevation
+        string name
+    }
+    RUNWAY {
+        int id PK
+        string name
     }
     AIRCRAFT {
-        string id
+        int id PK
+        int icao24
     }
     PROFILE {
-        string id
+        int id PK
     }
     
-    MILESTONE ||--|{ FLIGHT : id
+    MILESTONE }|--|| FLIGHT : has
+    FLIGHT    }o--|{ AIRPORT : has
+    AIRPORT   }|--|{ RUNWAY : has
 
 ```
 

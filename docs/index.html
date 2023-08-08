@@ -261,6 +261,7 @@ div.csl-indent {
 </ul>
 <p>For example taxi-out sub-phase can be framed by the ground portion from <code>off-block</code> to <code>rwy-entry</code> milestones which with defined assumptions in term of aircraft &amp; engine type, full thrust percentage and number of engines in use can be handled to an emission calculator to compute CO2, NOx, … emissions.</p>
 <p>The selection of milestones to model the flight and the further assumptions of how the aircraft is operated between those milestones will produce results with different levels of <a href="https://en.wikipedia.org/wiki/Accuracy_and_precision">accuracy and precision</a>.</p>
+<p><strong>NOTE</strong>: add ER diagram for use case</p>
 </section>
 <section id="operational-performance" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="operational-performance"><span class="header-section-number">4.2</span> Operational performance</h2>
@@ -282,22 +283,47 @@ div.csl-indent {
 <p>
 </p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-1">erDiagram
     MILESTONE {
-        string id
+        int id PK
+        int flight_id FK
+        string type
+        datetime timestamp
+        float longitude
+        float latitude
+        float altitude
+        string source
+        string info
     }
     FLIGHT {
-        string id
+        int id PK
+        int ADEP FK
+        int ADES FK
+        int aircraft FK
+        string FLT_ID
     }
     AIRPORT {
-        string id
+        int id PK
+        string ICAO
+        string IATA
+        float longitude
+        float latitude
+        float elevation
+        string name
+    }
+    RUNWAY {
+        int id PK
+        string name
     }
     AIRCRAFT {
-        string id
+        int id PK
+        int icao24
     }
     PROFILE {
-        string id
+        int id PK
     }
     
-    MILESTONE ||--|{ FLIGHT : id
+    MILESTONE }|--|| FLIGHT : has
+    FLIGHT    }o--|{ AIRPORT : has
+    AIRPORT   }|--|{ RUNWAY : has
 
 </pre>
 <div id="mermaid-tooltip-1" class="mermaidTooltip">
