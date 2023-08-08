@@ -47,7 +47,7 @@ Additional ad-hoc milestones can be defined for specific needs, for example FIR 
 milestones would be usefult to count Departure, Arrival, Internal, Overflight (DAIO) statistics.
 
 
-# Milestone
+# Milestone {#sec-milestones}
 
 A flight milestone is conceptually defined by
 
@@ -63,6 +63,9 @@ Further useful attributes for business processing of the information are:
   `osn` (extracted by OSN's ADS-B data), `nm` (as calculated by EUROCONTROL's Network Manager)
 * contextual information, i.e. `F33R` as the relevant parking position for an `off-block` milestone
   or `26` as the runway ID for a `take-off` milestone.
+  This field can be also useful to define a custom fomat for airspace crossing, for example for
+  a milestone like `x-fir` we could have the `info` contain something like `from:LFFF, to:LFRR` to
+  provide info about the transition order of airspace penetration.
 
 
 # Use Cases
@@ -116,13 +119,29 @@ For example using the `touch-down` (**T22** in @fig-flight-phases) with the cont
 we can calculate RWY utilization at each airport or inter-arrival times, etc.
 
 
+## Airspace profile
+
+**TODO**: milestones line FIR crossing (`x-fir`) could be used to extract an flight airspace profile.
+For example we could have AUA crossing (`x-aua`) or even elementary airspace (`x-esa`) ones.
+The tricky thing is obviously having a non-overlapping airspaces (of the same type)
+
 # Milestones Definition
 
-![Entity-Relationship diagram for Milestones and relevant concepts.](media/er-diagram.jpeg)
+The milestone concept can be modeled in entity-relationship fashion as in @fig-er-milestones.
 
-* flight table --> at a min flight ID, ADEP, ADES, take-off, touch-down (optionally or in a
-  separate table aircraft info, airline info) 
-* state vector (or point profile or similar) --> with ideally sk to flight ID on flight table
-* milestone table --> with sk to flight ID on flight table
-* (optional in a normalized DB schema) contextual info table --> sk to flight ID in flight table
+![Entity-Relationship diagram for Milestone and relevant concepts.](media/er-diagram.jpeg){#fig-er-milestones}
 
+In words, a milestone refers to a flight (via the foreign key `flight_id`) and
+has few attributes as described in @sec-milestones (namely, `type`, `timestamp`, `lon`, `lat`,
+`alt`, `src`, `info`.)
+
+A flight is (simply) defined by the aerodrome of departure (`ADEP`) and destination (`ADES`) (which
+are are foreign keys to `AIRPORT.id`), its callsign, take-off and landing timestamps, and
+aircraft (a foreign key to `AIRCRAFT.id`.)
+[**NOTE**: this is still simplistic...how do we cater for AFIL, ZZZZ (these could be just *special*
+airport entries without lon/lat/elevation)  or crashes (again another special entry?)]
+
+A flight (point) profile is a 4D sequence of timestamp and 3D positions as flown (or calculated).
+A flight profiles links to the relevant flight via the foreign key `flight_id`.
+
+For OSN a flight profile is a state vector.
