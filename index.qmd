@@ -155,7 +155,7 @@ erDiagram
         string FLT_ID
     }
     OA_AIRPORTS {
-        int id ()
+        int id
         string ident
         string type
         string name
