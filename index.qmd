@@ -1,7 +1,7 @@
 
 # Introduction
 
-This document details the concepts and ideas supporting the definition of flight milestones.
+This document details the concepts and ideas supporting the definition of flight milestones..
 
 # Phases of a Flight
 
