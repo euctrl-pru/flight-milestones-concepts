@@ -4,8 +4,8 @@ project:
 
 book:
   title: "Flight Milestones"
-  author: "Enrico Spinielli"
-  date: "2023-08-01"
+  author: "Enrico Spinielli, Quinten Goens"
+  date: "2023-10-10"
   chapters:
     - index.qmd
     - references.qmd
