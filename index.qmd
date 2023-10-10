@@ -154,18 +154,47 @@ erDiagram
         int aircraft FK
         string FLT_ID
     }
-    AIRPORT {
-        int id PK
-        string ICAO
-        string IATA
-        float longitude
-        float latitude
-        float elevation
+    OA_AIRPORTS {
+        int id ()
+        string ident
+        string type
         string name
+        double latitude_deg
+        double longitude_deg
+        int elevation_ft
+        string continent
+        string iso_country
+        string iso_region
+        string municipality
+        string scheduled_service
+        string gps_code
+        string iata_code
+        string local_code
+        string home_link
+        string wikipedia_link
+        string keywords
     }
-    RUNWAY {
-        int id PK
-        string name
+    OA_RUNWAYS {
+        int id
+        int airport_ref
+        string airport_ident
+        int length_ft
+        int width_ft
+        string surface
+        boolean lighted
+        boolean closed
+        string le_ident
+        double le_latitude_deg
+        double le_longitude_deg
+        int le_elevation_ft
+        double le_heading_degt
+        int le_displaced_threshold_ft
+        string he_ident
+        double he_latitude_deg
+        double he_longitude_deg
+        int he_elevation_ft
+        double he_heading_degt
+        int he_displaced_threshold_ft
     }
     AIRCRAFT {
         int id PK
