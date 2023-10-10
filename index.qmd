@@ -152,7 +152,7 @@ erDiagram
         int ADEP FK
         int ADES FK
         int aircraft FK
-        string FLT_ID
+        string profile_id FK
     }
     OA_AIRPORTS {
         int id PK
@@ -207,6 +207,8 @@ erDiagram
     MILESTONE }|--|| FLIGHT : has
     FLIGHT    }o--|{ OA_AIRPORTS : has
     OA_AIRPORTS   }|--|{ OA_RUNWAYS : has
+    FLIGHT ||--|{ AIRCRAFT : has
+    FLIGHT ||--|| PROFILE : has
 
 ```
 
