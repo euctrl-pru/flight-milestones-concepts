@@ -155,7 +155,7 @@ erDiagram
         string FLT_ID
     }
     OA_AIRPORTS {
-        int id
+        int id PK
         string ident
         string type
         string name
@@ -175,8 +175,8 @@ erDiagram
         string keywords
     }
     OA_RUNWAYS {
-        int id
-        int airport_ref
+        int id PK
+        int airport_ref FK
         string airport_ident
         int length_ft
         int width_ft
