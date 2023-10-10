@@ -140,12 +140,20 @@ erDiagram
         int id PK
         int flight_id FK
         string type
-        datetime timestamp
+        timestamp event_time
         float longitude
         float latitude
         float altitude
         string source
+        string version
         string info
+    }
+    MEASUREMENT {
+        int id PK
+        int milestone_id FK
+        string type
+        float value
+        string version
     }
     FLIGHT {
         int id PK
@@ -153,6 +161,7 @@ erDiagram
         int ADES FK
         int aircraft FK
         string profile_id FK
+        timestamp DOF
     }
     OA_AIRPORTS {
         int id PK
@@ -209,6 +218,7 @@ erDiagram
     OA_AIRPORTS   }|--|{ OA_RUNWAYS : has
     FLIGHT ||--|{ AIRCRAFT : has
     FLIGHT ||--|| PROFILE : has 
+    MEASUREMENT ||--|{ MILESTONE : has
 
 ```
 
@@ -229,3 +239,9 @@ A flight (point) profile is a 4D sequence of timestamp and 3D positions as flown
 A flight profiles links to the relevant flight via the foreign key `flight_id`.
 
 For OSN a flight profile is a state vector.
+
+
+
+# Example data
+
+TBD
