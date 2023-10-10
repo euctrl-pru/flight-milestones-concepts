@@ -205,8 +205,8 @@ erDiagram
     }
     
     MILESTONE }|--|| FLIGHT : has
-    FLIGHT    }o--|{ AIRPORT : has
-    AIRPORT   }|--|{ RUNWAY : has
+    FLIGHT    }o--|{ OA_AIRPORTS : has
+    OA_AIRPORTS   }|--|{ OA_RUNWAYS : has
 
 ```
 
